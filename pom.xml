@@ -69,6 +69,7 @@
 	        <artifactId>flyway-core</artifactId>
         </dependency>
 		
+		
 	</dependencies>
 
 	<build>
