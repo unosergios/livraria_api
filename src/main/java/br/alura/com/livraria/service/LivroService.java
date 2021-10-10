@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import br.alura.com.livraria.dto.LivroDto;
@@ -32,10 +33,11 @@ public class LivroService {
 
 	}	
 	
+	@Transactional
 	public void cadastrar(LivroFormDto dto) {
 
 		Livro livro = modelMapper.map(dto, Livro.class);
-
+        livro.setId(null);
 		livroRepository.save(livro);
 	}
 	

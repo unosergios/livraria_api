@@ -2,6 +2,8 @@ package br.alura.com.livraria.dto;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +12,7 @@ import lombok.Setter;
 public class LivroDto {
 
 	private String titulo;
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private LocalDate dataDeLancamento;
 	private int numeroDePaginas;
 	private String autor;	

@@ -6,4 +6,4 @@ CREATE TABLE livros (
   autor_id bigint(20) NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (autor_id) references autores(id)
-  ) 
+  );

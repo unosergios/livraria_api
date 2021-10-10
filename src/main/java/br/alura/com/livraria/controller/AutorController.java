@@ -25,7 +25,7 @@ import br.alura.com.livraria.service.AutorService;
 @RequestMapping("/autores")
 public class AutorController {
 
-	@Autowired
+    @Autowired
 	private AutorService service;	
 	
 	
