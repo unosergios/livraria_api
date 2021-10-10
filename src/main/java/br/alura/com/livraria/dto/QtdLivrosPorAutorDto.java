@@ -1,6 +1,5 @@
 package br.alura.com.livraria.dto;
 
-import java.math.BigDecimal;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

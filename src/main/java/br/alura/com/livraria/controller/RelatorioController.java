@@ -16,9 +16,9 @@ public class RelatorioController {
 
 	@Autowired
 	private RelatorioService service;
-	
+
 	@GetMapping("/livraria")
-	public List<QtdLivrosPorAutorDto> relatorioDeAutores(){
+	public List<QtdLivrosPorAutorDto> relatorioDeAutores() {
 		return service.relatorioDeAutores();
 	}
 }
