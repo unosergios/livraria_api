@@ -26,7 +26,7 @@ public class LivroFormDto {
 	@JsonFormat(pattern="dd/MM/yyyy")
 	private LocalDate dataDeLancamento;
 
-	@Min(100)
+	@Min(value=100 , message ="Quantidade de paginas de ser no minimo {value}")
 	private int numeroDePaginas;
 
 	@JsonAlias("autor_id")
