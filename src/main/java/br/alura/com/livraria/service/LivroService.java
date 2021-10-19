@@ -1,22 +1,16 @@
 package br.alura.com.livraria.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.validation.Valid;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import br.alura.com.livraria.dto.LivroDto;
 import br.alura.com.livraria.dto.LivroFormDto;
+import br.alura.com.livraria.modelo.Autor;
 import br.alura.com.livraria.modelo.Livro;
+import br.alura.com.livraria.repository.AutorRepository;
 import br.alura.com.livraria.repository.LivroRepository;
 
 @Service
@@ -24,6 +18,10 @@ public class LivroService {
 
 	@Autowired
 	private LivroRepository livroRepository;
+	
+    @Autowired
+	private AutorRepository autorRepository;  
+	
 	private ModelMapper modelMapper = new ModelMapper();
 	
 	
@@ -36,12 +34,18 @@ public class LivroService {
 	@Transactional
 	public LivroDto cadastrar(LivroFormDto dto) {
 
+		Long autorId = dto.getAutorId();                 
+		Autor autor = autorRepository.getById(autorId);  
+		
+		
 		Livro livro = modelMapper.map(dto, Livro.class);
+		
+		livro.setAutor(autor);
         livro.setId(null);
 		livroRepository.save(livro);
 		return modelMapper.map(livro, LivroDto.class);
 	}
 	
 	
-	
+
 }
