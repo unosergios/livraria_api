@@ -19,15 +19,19 @@ import br.alura.com.livraria.dto.AutorDto;
 import br.alura.com.livraria.dto.AutorFormDto;
 
 import br.alura.com.livraria.service.AutorService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/autores")
+@Api(tags="Autores")
 public class AutorController {
 
 	@Autowired
 	private AutorService service;
 
 	@GetMapping
+	@ApiOperation("Listar autores")
 	public Page<AutorDto> listar(Pageable paginacao) {
 
 		return service.listar(paginacao);
@@ -35,6 +39,7 @@ public class AutorController {
 	}
 
 	@PostMapping
+	@ApiOperation("Cadastrar novos autores")
 	public ResponseEntity<AutorDto> cadastrar(@RequestBody @Valid AutorFormDto dto, UriComponentsBuilder uriBuilder) {
 
 		AutorDto autorDto = service.cadastrar(dto);
