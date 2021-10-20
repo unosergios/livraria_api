@@ -24,6 +24,7 @@ public class AutorService {
 	@Autowired
     private AutorRepository autorRepository;
 	private ModelMapper modelMapper = new ModelMapper();
+	
 	private List<Autor> autores = new ArrayList<>();
 
 	

@@ -27,6 +27,14 @@ public class Autor {
 		private String email;
 		private LocalDate dataNascimento;
 		private String miniCurriculum;
+		
+		
+		public Autor(String nome, String email, LocalDate dataNascimento, String miniCurriculum) {
+			this.nome = nome;
+			this.email = email;
+			this.dataNascimento = dataNascimento;
+			this.miniCurriculum = miniCurriculum;
+		}
 
 
 }
