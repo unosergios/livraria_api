@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
@@ -33,24 +34,21 @@ public class TratamentoDeErros {
 	}
 
 	
-//	@ExceptionHandler(Exception.class)
-	@ExceptionHandler(NotFound.class)
-//	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	public Erro404Dto tratarErro404(NotFound ex , HttpServletRequest req) {
-        System.out.println("entrou aqui ");
-		
-		return new Erro404Dto(LocalDate.now(), ex.getClass().toString(), ex.getMessage(), req.getRequestURI());
-	}	
-	
 	
 
+	@ExceptionHandler(EntityNotFoundException.class)
+ 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
+	public Erro404Dto tratarErro404(EntityNotFoundException er , HttpServletRequest req) {
+		return new Erro404Dto(LocalDate.now(), er.getClass().toString(),  req.getRequestURI());
+
+	}	
 	
-	
-	
+		
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(code=HttpStatus.INTERNAL_SERVER_ERROR)
 	public Erro500Dto tratarErro500(Exception ex , HttpServletRequest req) {
 		return new Erro500Dto(LocalDate.now(), ex.getClass().toString(), ex.getMessage(), req.getRequestURI());
+		
 	}
 	
 	

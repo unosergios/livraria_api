@@ -11,7 +11,6 @@ public class Erro404Dto {
 
 	 private LocalDate timestamp;
 	 private String erro;
-     private String mensagem;
 	 private String path;
 	
 	
