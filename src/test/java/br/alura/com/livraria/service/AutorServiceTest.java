@@ -1,6 +1,6 @@
 package br.alura.com.livraria.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 
@@ -10,7 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import br.alura.com.livraria.dto.AutorDto;
 import br.alura.com.livraria.dto.AutorFormDto;
@@ -28,8 +27,8 @@ class AutorServiceTest {
 	@Test
 	void deveriaCadastrarUmAutor() {
         AutorFormDto formDto = new AutorFormDto(
-        	"Sergio Uno",
-        	"sergiouno@gmail.com",
+        	"Ana Lima",
+        	"analimao@gmail.com",
         	LocalDate.now(),
         	"tttteessteee");
 
@@ -40,7 +39,7 @@ class AutorServiceTest {
        assertEquals(formDto.getMiniCurriculum(), dto.getMiniCurriculum());
        
        Mockito
-   	     .verify(autorRepository.save(Mockito.any()));     
+   	     .verify(autorRepository).save(Mockito.any());     
        
    		
 	}

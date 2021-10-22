@@ -30,36 +30,41 @@ class LivroServiceTest {
 	
     @InjectMocks
 	private LivroService service;
-
-	@Test
-	void deveriaCadastrarUmLivro() {
-		
+    
+	private LivroFormDto criarFormLivroDto() {
 		LivroFormDto formDto = new LivroFormDto(
 		  "Spring Boot",
 		  LocalDate.now(),
 		  120,
 		  10l);
+		return formDto;
+	}
+    
+    
+    
+	@Test
+	void deveriaCadastrarUmLivro() {
 		
+		
+		LivroFormDto formDto = criarFormLivroDto();
 
     	LivroDto dto = service.cadastrar(formDto);
     	
     	Mockito
-    	.verify(livroRepository.save(Mockito.any()));
+    	 .verify(livroRepository).save(Mockito.any());
     	
     	assertEquals(formDto.getTitulo(), dto.getTitulo());
     	assertEquals(formDto.getNumeroDePaginas(), dto.getNumeroDePaginas());
        	
 	}
 
+
+
 	
 	@Test
 	void naoDeveriaCadastrarUmLivroComUmAutorInexistente() {
 		
-		LivroFormDto formDto = new LivroFormDto(
-		  "Spring Boot",
-		  LocalDate.now(),
-		  120,
-		  10l);
+		LivroFormDto formDto = criarFormLivroDto();
 		
 
 		Mockito

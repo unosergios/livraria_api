@@ -41,7 +41,7 @@ class AutorControllerTest  {
 	void deveriaCadastrarAutorComDadosCompletos() throws Exception {
 		String json = "{\"nome\"  : \"Ana Lima\","
 				    + "\"email\" : \"analima@gmail.com\","
-				    + "\"dataNascimento\" : \"1975-05-05\","
+				    + "\"dataNascimento\" : \"01/06/1975\","
 				    + "\"miniCurriculum\" : \"teste 4\" } ";		
 	
 		 mvc
@@ -50,7 +50,7 @@ class AutorControllerTest  {
 		   .content(json))
 		   .andExpect(status().isCreated())
 		   .andExpect(header().exists("Location"))
-	//	   .andExpect(content().json(json))
+		   .andExpect(content().json(json))
 		   ;
 	}	
 }

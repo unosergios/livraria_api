@@ -31,46 +31,45 @@ class AutorRepositoryTest {
 	
 	@Autowired
 	private TestEntityManager em;
+
+	
+	private Autor criarUsuario(String nomeAutor) {
+		Autor a1 = new Autor(nomeAutor,"e_mail",LocalDate.now(),"curri");
+        em.persist(a1);
+		return a1;
+	}
+	
+	private void criarLivro(String tituloDoLivro, String nomeDoAutor) {
+		Autor autor = criarUsuario(nomeDoAutor);
+		Livro l1 = new Livro(tituloDoLivro,LocalDate.now(),100,autor);
+        em.persist(l1);
+	}
+
 	
 	@Test
 	void deveriaRetornarRelatorioDeAutores() {
-
-        Autor a1 = new Autor("André da Silva","e_mail",LocalDate.now(),"curri");
-        em.persist(a1);
         
-        Autor a2 = new Autor("Fernanda Nogueira","e_mail",LocalDate.now(),"curri");
-        em.persist(a2);
-        
-        Autor a3 = new Autor("Juliana Carvalho","e_mail",LocalDate.now(),"curri");
-        em.persist(a3);
-        
-        Autor a4 = new Autor("Rita de Assis","e_mail",LocalDate.now(),"curri");
-        em.persist(a4);        
-
-        Autor a5 = new Autor("Rodrigo De Souza","e_mail",LocalDate.now(),"curri");
-        em.persist(a5);    
-        
-		Livro l1 = new Livro("Aprenda a falar em público",LocalDate.now(),100,a3);
-        em.persist(l1);
-        
-		Livro l2 = new Livro("Aprenda Java em 21 dias",LocalDate.now(),100,a1);
-        em.persist(l2);
-        
-		Livro l3 = new Livro("Como ser mais produtivo",LocalDate.now(),100,a2);
-        em.persist(l3);
-        
-		Livro l4 = new Livro("Aprenda Python em 12 dias",LocalDate.now(),100,a1);
-        em.persist(l4);
-        
-		Livro l5 = new Livro("Como fazer bolos incríveis",LocalDate.now(),100,a4);
-        em.persist(l5);
-        
-		Livro l6 = new Livro("Investindo em ações na bolsa de valores",LocalDate.now(),100,a5);
-        em.persist(l6);
-        
-		Livro l7 = new Livro("Otimizando seu tempo",LocalDate.now(),100,a2);
-        em.persist(l7);        
+		criarLivro("Aprenda a falar em público",
+				"Juliana Carvalho");
 		
+		criarLivro("Aprenda Java em 21 dias",
+				"André da Silva");
+
+		criarLivro("Aprenda Python em 12 dias",
+				"André da Silva");		
+        
+		criarLivro("Como ser mais produtivo",
+				"Fernanda Nogueira");		
+        		
+		criarLivro("Como fazer bolos incríveis",
+				"Rita de Assis");		
+		
+		criarLivro("Investindo em ações na bolsa de valores",
+				"Rodrigo De Souza");	
+		
+		criarLivro("Otimizando seu tempo",
+				"Fernanda Nogueira");			
+	
 				
 		List<QtdLivrosPorAutorDto> relatorio = repository.relatorioDeAutores();
 //	    assertNotNull(relatorio);
@@ -90,6 +89,9 @@ class AutorRepositoryTest {
 				  Assertions.tuple("Rodrigo De Souza",1l,14.29)
 				  );
 		}
+
+
+
 
 
 

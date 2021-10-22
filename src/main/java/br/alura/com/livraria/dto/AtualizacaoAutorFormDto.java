@@ -15,22 +15,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
+
 @NoArgsConstructor
 @AllArgsConstructor
-public class AutorFormDto {
-
-	@NotBlank
-	private String nome;
-    
-	@NotBlank
-	private String email;
-
-	@NotNull
-	@PastOrPresent
-	@JsonFormat(pattern="dd/MM/yyyy")
-	private LocalDate dataNascimento;
+public class AtualizacaoAutorFormDto extends AutorFormDto {
 	
-	@NotBlank
-	private String miniCurriculum;
+	@NotNull
+	private Long id;
+
 
 }

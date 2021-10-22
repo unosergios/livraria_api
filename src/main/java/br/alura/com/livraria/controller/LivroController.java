@@ -25,6 +25,7 @@ import br.alura.com.livraria.dto.LivroDto;
 import br.alura.com.livraria.dto.LivroFormDto;
 
 import br.alura.com.livraria.service.LivroService;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/livros")
@@ -33,13 +34,15 @@ public class LivroController {
 	@Autowired
 	private LivroService service;
 
+	@ApiOperation("Listar livros")
 	@GetMapping
 	public Page<LivroDto> listar(Pageable paginacao) {
 
 		return service.listar(paginacao);
 
 	}
-
+	
+	@ApiOperation("Cadastrar livros")
 	@PostMapping
 	public ResponseEntity<LivroDto> cadastrar(@RequestBody @Valid LivroFormDto dto, UriComponentsBuilder uriBuilder) {
 
@@ -48,7 +51,7 @@ public class LivroController {
 		return ResponseEntity.created(uri).body(livroDto);
 	}
 	
-	
+	@ApiOperation("Atualizar dados de livros")
 	@PutMapping
 	public ResponseEntity<LivroDto> atualizar(@RequestBody @Valid AtualizacaoLivroFormDto dto) {
 		LivroDto livroDto = service.atualizar(dto);
@@ -56,7 +59,7 @@ public class LivroController {
 		return ResponseEntity.ok(livroDto);
 	}
 	
-	
+	@ApiOperation("Excluir livros")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<LivroDto> excluir(@PathVariable @NotNull Long id) {
 		service.excluir(id);
@@ -64,7 +67,7 @@ public class LivroController {
 		return ResponseEntity.noContent().build();
 	}
 			
-
+	@ApiOperation("Detalhar livros")
 	@GetMapping("/{id}")
 	public ResponseEntity<LivroDto> detalhar(@PathVariable @NotNull Long id) {
 		LivroDto dto = service.detalhar(id);

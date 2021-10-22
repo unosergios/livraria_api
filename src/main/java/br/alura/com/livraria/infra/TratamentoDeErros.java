@@ -2,19 +2,18 @@ package br.alura.com.livraria.infra;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.client.HttpClientErrorException.NotFound;
 
 import br.alura.com.livraria.dto.Erro400Dto;
 import br.alura.com.livraria.dto.Erro404Dto;
@@ -36,11 +35,14 @@ public class TratamentoDeErros {
 	
 	
 
-	@ExceptionHandler(EntityNotFoundException.class)
+	//@ExceptionHandler(EntityNotFoundException.class)
+	@ExceptionHandler({EntityNotFoundException.class, EmptyResultDataAccessException.class, NotFoundException.class})
  	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	public Erro404Dto tratarErro404(EntityNotFoundException er , HttpServletRequest req) {
-		return new Erro404Dto(LocalDate.now(), er.getClass().toString(),  req.getRequestURI());
-
+	public Erro404Dto tratarErro404(EntityNotFoundException er , HttpServletRequest req,
+			EmptyResultDataAccessException ee , NotFoundException nf) {
+	//	return new Erro404Dto(LocalDate.now(), er.getClass().toString(),  req.getRequestURI());
+		return new Erro404Dto(LocalDate.now(), nf.getClass().toString(), er.getMessage(), req.getRequestURI()); 
+      
 	}	
 	
 		
