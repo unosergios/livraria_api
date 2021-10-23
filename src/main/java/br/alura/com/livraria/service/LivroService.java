@@ -1,7 +1,6 @@
 package br.alura.com.livraria.service;
 
 import javax.persistence.EntityNotFoundException;
-import javax.validation.constraints.NotNull;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
