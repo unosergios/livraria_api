@@ -33,16 +33,18 @@ public class TratamentoDeErros {
 	}
 
 	
-	
+//	@ExceptionHandler({EntityNotFoundException.class, EmptyResultDataAccessException.class, NotFoundException.class})		
+	@ExceptionHandler(NotFoundException.class)	
+	@ResponseStatus(code = HttpStatus.NOT_FOUND )
+	public Erro404Dto tratarErro404(EmptyResultDataAccessException nf , HttpServletRequest req) {
+		return new Erro404Dto(LocalDate.now(), nf.getClass().toString(), nf.getMessage(), req.getRequestURI()); 
+   
+	}		
 
-	//@ExceptionHandler(EntityNotFoundException.class)
-	@ExceptionHandler({EntityNotFoundException.class, EmptyResultDataAccessException.class, NotFoundException.class})
+	@ExceptionHandler(EntityNotFoundException.class)
  	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	public Erro404Dto tratarErro404(EntityNotFoundException er , HttpServletRequest req,
-			EmptyResultDataAccessException ee , NotFoundException nf) {
-	//	return new Erro404Dto(LocalDate.now(), er.getClass().toString(),  req.getRequestURI());
-		return new Erro404Dto(LocalDate.now(), nf.getClass().toString(), er.getMessage(), req.getRequestURI()); 
-      
+	public Erro404Dto tratarErro404(EntityNotFoundException er , HttpServletRequest req) {
+		return new Erro404Dto(LocalDate.now(), er.getClass().toString(), " ", req.getRequestURI());
 	}	
 	
 		
