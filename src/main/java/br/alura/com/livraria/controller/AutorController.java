@@ -31,9 +31,11 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags="Autores")
 public class AutorController {
 
+
 	@Autowired
 	private AutorService service;
 
+ 	
 	@GetMapping
 	@ApiOperation("Listar autores")
 	public Page<AutorDto> listar(Pageable paginacao) {
@@ -53,7 +55,7 @@ public class AutorController {
 	
 	
 	@PutMapping
-	@ApiOperation("Atuaizar dados de  autores")
+	@ApiOperation("Atualizar dados de  autores")
 	public ResponseEntity<AutorDto> atualizar(@RequestBody @Valid AtualizacaoAutorFormDto dto) {
 		AutorDto autorDto = service.atualizar(dto);
 	

@@ -13,7 +13,11 @@ public interface AutorRepository extends JpaRepository<Autor, Long>{
 	@Query("select new br.alura.com.livraria.dto.QtdLivrosPorAutorDto ( a.nome,count(l) as quantidadedeLivros,"
 			+ "round((count(l) * 1.0/ (select count(l2) from Livro l2)*1.0)*100,2)  as percentual )"
 			+ " from Livro l join l.autor a group by a.nome")
-	List<QtdLivrosPorAutorDto> relatorioDeAutores();           
+	List<QtdLivrosPorAutorDto> relatorioDeAutores();
+
+	
+	
+
 
 	
 }

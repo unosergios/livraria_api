@@ -18,7 +18,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name="autores")
-public class Autor {
+public class Autor  {
 
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +27,7 @@ public class Autor {
 		private String email;
 		private LocalDate dataNascimento;
 		private String miniCurriculum;
+	
 		
 		
 		public Autor(String nome, String email, LocalDate dataNascimento, String miniCurriculum) {
@@ -46,6 +47,7 @@ public class Autor {
 
 			
 		}
+
 
 
 }
