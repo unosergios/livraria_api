@@ -17,6 +17,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,6 +29,7 @@ import lombok.ToString;
 	@AllArgsConstructor
 	@NoArgsConstructor
 	@ToString(exclude= {"senha"})
+	@EqualsAndHashCode(of="id")
 	@Entity
 	@Table(name="usuarios")
 	// 
@@ -47,7 +49,7 @@ import lombok.ToString;
 		private List<Perfil> perfis = new ArrayList<>();
 		
 		
-		public Usuario(String nome, String Login, String senha) {
+		public Usuario(String nome, String login, String senha) {
 			this.nome= nome;
 			this.login=login;
 			this.senha = senha;
