@@ -13,12 +13,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.context.ActiveProfiles;
 
 import br.alura.com.livraria.dto.LivroDto;
 import br.alura.com.livraria.dto.LivroFormDto;
 import br.alura.com.livraria.repository.AutorRepository;
 import br.alura.com.livraria.repository.LivroRepository;
 
+@ActiveProfiles("test")
 @ExtendWith(MockitoExtension.class)
 class LivroServiceTest {
 

@@ -2,6 +2,7 @@ package br.alura.com.livraria.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
@@ -10,11 +11,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.context.ActiveProfiles;
 
 import br.alura.com.livraria.dto.AutorDto;
 import br.alura.com.livraria.dto.AutorFormDto;
 import br.alura.com.livraria.repository.AutorRepository;
 
+@ActiveProfiles("test")
 @ExtendWith(MockitoExtension.class)
 class AutorServiceTest {
 
