@@ -6,11 +6,12 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.ActiveProfiles;
 
 import br.alura.com.livraria.modelo.Autor;
 import br.alura.com.livraria.modelo.Livro;
 
-
+@ActiveProfiles("test")
 class CalculaRoyaltyDoAutorServiceTest {
 
 	private CalculaRoyaltyDoAutorService calculaRoyalty;
