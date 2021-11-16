@@ -81,6 +81,11 @@
 	        <artifactId>flyway-core</artifactId>
         </dependency>
 
+         <dependency> 
+ 	        <groupId>com.h2database</groupId> 
+ 	        <artifactId>h2</artifactId> 
+         </dependency> 
+
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
