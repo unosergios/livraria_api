@@ -12,7 +12,7 @@ CREATE TABLE perfis (
   foreign key(perfil_id) references perfis(id)
   );
   
-  INSERT into perfis (nome) values("ROLE_ADMIN");
-  INSERT into perfis (nome) values("ROLE_COMUM");
-  INSERT into perfis (nome) values("ROLE_GERENTE");
+  INSERT into perfis (nome) values('ROLE_ADMIN');
+  INSERT into perfis (nome) values('ROLE_COMUM');
+  INSERT into perfis (nome) values('ROLE_GERENTE');
  
